@@ -20,7 +20,7 @@ public class Main {
             session.beginTransaction();
             session.save(employee);
             session.getTransaction().commit();
-            System.out.println("Done...");
+            System.out.println("Done with the adding data");
 
 
         }finally {
