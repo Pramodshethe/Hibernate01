@@ -1,21 +1,30 @@
-import javax.persistence.Entity;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.EntityManager;
+import com.pramod.entity.Employee;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
 
-        Employee employee = new Employee();
-        employee.setName("Pramod");
+        SessionFactory sessionFactory = new Configuration()
+                                        .configure("hibernate.cfg.xml")
+                                        .buildSessionFactory();
 
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(employee);
-        entityManager.getTransaction().commit();
+        Session session = sessionFactory.openSession();
 
-        entityManagerFactory.close();
+        try{
+            Employee employee = new Employee("PramodShethe");
 
+            session.beginTransaction();
+            session.save(employee);
+            session.getTransaction().commit();
+            System.out.println("Done...");
+
+
+        }finally {
+            sessionFactory.close();
+        }
     }
 }

@@ -1,3 +1,5 @@
+package com.pramod.entity;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,6 +14,10 @@ public class Employee {
     @GenericGenerator(name="incrementer",strategy = "increment")
     private int id;
     private String name;
+
+    public Employee( String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
