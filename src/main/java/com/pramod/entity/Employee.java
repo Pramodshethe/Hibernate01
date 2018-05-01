@@ -15,9 +15,7 @@ public class Employee {
     private int id;
     private String name;
 
-    public Employee( String name) {
-        this.name = name;
-    }
+
 
     public int getId() {
         return id;

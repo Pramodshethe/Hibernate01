@@ -1,30 +1,20 @@
 import com.pramod.entity.Employee;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 public class Main {
     public static void main(String[] args) {
+        Employee e = new Employee();
 
-        SessionFactory sessionFactory = new Configuration()
-                                        .configure("hibernate.cfg.xml")
-                                        .buildSessionFactory();
-
-        Session session = sessionFactory.openSession();
-
-        try{
-            Employee employee = new Employee("PramodShethe");
-
-            session.beginTransaction();
-            session.save(employee);
-            session.getTransaction().commit();
-            System.out.println("Done with the adding data");
+        e.setName("Shethe");
+        EntityManagerFactory et = Persistence.createEntityManagerFactory("abc");
+        EntityManager em = et.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(e);
+        em.getTransaction().commit();
 
 
-        }finally {
-            sessionFactory.close();
-        }
     }
 }
