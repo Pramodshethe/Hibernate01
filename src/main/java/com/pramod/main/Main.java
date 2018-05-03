@@ -24,11 +24,20 @@ public class Main {
                     employee.setName("Diago");
                     session.save(employee);
                     session.getTransaction().commit();
-                System.out.println("Done");
+                    System.out.println("Done");
                     session.close();
                     break;
+
+            case(2):session.beginTransaction();
+                    Employee employee1 = (Employee) session.load(Employee.class,1);
+                    session.delete(employee1);
+                    session.getTransaction().commit();
+                    System.out.println("Successfully deleted");
+                    session.close();
+                    break;
+
             default:
-                System.out.println("invalid");
+                System.out.println("Invalid");
                 break;
         }
     }
