@@ -16,7 +16,7 @@ public class Main {
         Session session = sessionFactory.openSession();
 
         do {
-            System.out.println("1:Save " + " 2:Delete"+" 3:Retrive");
+            System.out.println("1:Save " + " 2:Delete"+" 3:Retrive "+" 4:Update ");
             System.out.println("Choose the Operation");
             Scanner scan = new Scanner(System.in);
             int operation = scan.nextInt();
@@ -61,6 +61,14 @@ public class Main {
                     System.out.println("_________________");
                         transaction.commit();
                         session.close();
+
+                case(4): session.beginTransaction();
+                         System.out.println("Enter the ID to UPDATE : ");
+                         int iid=scan.nextInt();
+                         Employee employee3= (Employee) session.get(Employee.class,iid);
+                         employee3.setName("NEWPRAMOD");
+                         session.getTransaction().commit();
+                         session.close();
                 default:
                     System.out.println("Invalid Choice");
                     break;
