@@ -1,5 +1,6 @@
 package com.pramod.main;
 
+import com.pramod.controller.Control;
 import com.pramod.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
-
+        Control col = new Control();
         do {
             System.out.println("1:Save " + " 2:Delete"+" 3:Retrive "+" 4:Update ");
             System.out.println("Choose the Operation");
@@ -24,15 +25,7 @@ public class Main {
             switch (operation) {
 
                 case (1):
-                    session.beginTransaction();
-                    Employee employee = new Employee();
-                    System.out.println("Enter Name: ");
-                    String name = scan.next();
-                    employee.setName(name);
-                    session.save(employee);
-                    session.getTransaction().commit();
-                    System.out.println(name + " Is added Successfully");
-                    session.close();
+                    col.saveEmployee(String name);
                     break;
 
                 case (2):
