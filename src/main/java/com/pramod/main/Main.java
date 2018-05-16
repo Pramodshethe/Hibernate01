@@ -16,6 +16,7 @@ public class Main {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         Control col = new Control();
+        Employee emp = new Employee();
         do {
             System.out.println("1:Save " + " 2:Delete"+" 3:Retrive "+" 4:Update ");
             System.out.println("Choose the Operation");
@@ -25,43 +26,22 @@ public class Main {
             switch (operation) {
 
                 case (1):
-                    col.saveEmployee(String name);
+                    col.saveEmployee();
                     break;
 
                 case (2):
-                    session.beginTransaction();
-                    System.out.println("Enter the id to delete");
-                    int num = scan.nextInt();
-                    Employee employee1 = (Employee) session.load(Employee.class, num);
-                    session.delete(employee1);
-                    session.getTransaction().commit();
-                    System.out.println("Successfully deleted");
-                    session.close();
+                    col.deleteEmployee();
                     break;
 
                 case(3):
-                    Transaction transaction;
-                       transaction = session.beginTransaction();
-                    List employee2 = session.createQuery("from Employee").list();
-                    System.out.println("_________________");
-                    System.out.println("ID "+" NAME");
+                    col.displayEmployee();
+                    System.out.print(employee3.getId()+"  "+ emp.getName()+"\n");
+                    break;
 
-                        for (Iterator itr =employee2.iterator();itr.hasNext();){
-                            Employee employee3 = (Employee) itr.next();
-                            System.out.print(employee3.getId()+"  "+ employee3.getName()+"\n");
-                        }
+                case(4):
+                    col.updateEmployee();
+                    break;
 
-                    System.out.println("_________________");
-                        transaction.commit();
-                        session.close();
-
-                case(4): session.beginTransaction();
-                         System.out.println("Enter the ID to UPDATE : ");
-                         int iid=scan.nextInt();
-                         Employee employee3= (Employee) session.get(Employee.class,iid);
-                         employee3.setName("NEWPRAMOD");
-                         session.getTransaction().commit();
-                         session.close();
                 default:
                     System.out.println("Invalid Choice");
                     break;
