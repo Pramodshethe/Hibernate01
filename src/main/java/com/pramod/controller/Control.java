@@ -38,7 +38,7 @@ public class Control {
         session.close();
     }
 
-    public Employee displayEmployee(){
+    public void displayEmployee(){
         Transaction transaction;
         transaction = session.beginTransaction();
         List employee2 = session.createQuery("from Employee").list();
@@ -47,15 +47,13 @@ public class Control {
 
         for (Iterator itr = employee2.iterator(); itr.hasNext();){
             Employee employee3 = (Employee) itr.next();
-            return employee3;
-
+            System.out.print(employee3.getId()+"  "+ employee3.getName()+"\n");
         }
 
         System.out.println("_________________");
         transaction.commit();
         session.close();
 
-        return null;
     }
 
     public void updateEmployee(){

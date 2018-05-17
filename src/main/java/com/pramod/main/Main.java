@@ -35,7 +35,6 @@ public class Main {
 
                 case(3):
                     col.displayEmployee();
-                    System.out.print(employee3.getId()+"  "+ emp.getName()+"\n");
                     break;
 
                 case(4):
